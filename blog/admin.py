@@ -1,5 +1,5 @@
 from django.contrib import admin
-from blog.models import Tag, Post
+from blog.models import Tag, Post, Comment
 
 # attributes (prepopulated fields) of the subclass determine how
 # the model is displayed. Used in this way puts some JavaScript
@@ -7,12 +7,12 @@ from blog.models import Tag, Post
 # changes. Many ways to customise the Model Admin (exclude, fields, 
 # list_display, etc...) - Adam learning note
 
-admin.site.register(Tag)
-
 class PostAdmin(admin.ModelAdmin):
   prepopulated_fields = {"slug": ("title",)}
   list_display = ('slug', 'published_at')
 
+admin.site.register(Tag)
 admin.site.register(Post, PostAdmin)
+admin.site.register(Comment)
 
 
